@@ -24,7 +24,7 @@ namespace RestfulWebAPI02_NET
         public void ConfigurarOauth(IAppBuilder app)
         {
             // Configure the application for OAuth based flow
-            //var PublicClientId = "self";
+            var PublicClientId = "self";
             OAuthAuthorizationServerOptions OAuthOptions = new OAuthAuthorizationServerOptions
             {
                 Provider = new AppOAuthProvider(),

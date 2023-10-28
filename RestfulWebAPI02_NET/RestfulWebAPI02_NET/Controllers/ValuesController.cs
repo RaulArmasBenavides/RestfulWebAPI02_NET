@@ -1,25 +1,29 @@
 ﻿using System;
 using System.Net;
 using System.Threading;
+using System.Web;
 using System.Web.Http;
 
 namespace RestfulWebAPI02_NET.Controllers
 {
     public class ValuesController : ApiController
     {
-        // GET api/values
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
+ 
         public ValuesController()
         {
-             
+        }
+
+        [HttpGet]
+        [Route("api/CheckProtocol")]
+        public IHttpActionResult CheckProtocol()
+        {
+            string protocolVersion = HttpContext.Current.Request.ServerVariables["SERVER_PROTOCOL"];
+            return Ok(protocolVersion);
         }
 
         // GET api/values2
         [HttpGet]
-        //[Authorize(Roles ="USUARIO")]
+        [Authorize(Roles ="USUARIO")]
         [Route("api/getMessage")]
         public string getMessage()
         {

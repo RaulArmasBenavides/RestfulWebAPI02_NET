@@ -32,7 +32,7 @@ namespace RestfulWebAPI02_NET.Credentials
             {
                 ClaimsIdentity identidad = new ClaimsIdentity(context.Options.AuthenticationType);
                 identidad.AddClaim(new Claim(ClaimTypes.Name, context.Password));
-                //
+                
                 if (context.UserName == "admin" && context.Password == "123")
                 {
                     identidad.AddClaim(new Claim(ClaimTypes.Role, "ADMINISTRADOR"));
