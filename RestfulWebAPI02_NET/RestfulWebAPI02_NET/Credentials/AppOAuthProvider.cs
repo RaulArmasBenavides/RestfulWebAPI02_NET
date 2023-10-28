@@ -21,7 +21,7 @@ namespace RestfulWebAPI02_NET.Credentials
         //TEST
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Oriigin", new[] { "*" });
+            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
             var acceso = ((context.UserName == "admin" && context.Password == "123") || (context.UserName == "user" & context.Password == "222"));
 
             if (acceso == false)
@@ -33,7 +33,7 @@ namespace RestfulWebAPI02_NET.Credentials
                 ClaimsIdentity identidad = new ClaimsIdentity(context.Options.AuthenticationType);
                 identidad.AddClaim(new Claim(ClaimTypes.Name, context.Password));
                 //
-                if (context.UserName =="admin" && context.Password=="123")
+                if (context.UserName == "admin" && context.Password == "123")
                 {
                     identidad.AddClaim(new Claim(ClaimTypes.Role, "ADMINISTRADOR"));
                     context.Validated(identidad);
@@ -45,6 +45,29 @@ namespace RestfulWebAPI02_NET.Credentials
                 }
             }
         }
+
+        //public override Task GrantClientCredentials(OAuthGrantClientCredentialsContext context)
+        //{
+        //    return base.GrantClientCredentials(context);
+        //}
+
+
+        //public override Task GrantAuthorizationCode(OAuthGrantAuthorizationCodeContext context)
+        //{
+        //    return base.GrantAuthorizationCode(context);
+        //}
+
+
+        //public override Task GrantCustomExtension(OAuthGrantCustomExtensionContext context)
+        //{
+        //    return base.GrantCustomExtension(context);
+        //}
+
+        //public override Task GrantRefreshToken(OAuthGrantRefreshTokenContext context)
+        //{
+        //    return base.GrantRefreshToken(context);
+        //}
+
 
         /// <summary>
         /// Grant resource owner credentials overload method.
